@@ -39,8 +39,4 @@ export class DetailsComponent {
 
     this.applyForm.reset();
   }
-
-  getPhotoUrl(photo: string) {
-    return `https://angular.dev/assets/tutorials/common/${photo}`;
-  }
 }

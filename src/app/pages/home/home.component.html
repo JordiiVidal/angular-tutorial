@@ -7,5 +7,7 @@
 <section class="results">
     @for (housingLocation of filtredLocationList; track housingLocation.id){
     <app-housing-location [housingLocation]="housingLocation" />
+    } @empty {
+    <p>There are no items.</p>
     }
 </section>

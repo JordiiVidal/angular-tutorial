@@ -1,5 +1,5 @@
-@if (housingLocation) {
-<article *ngIf="housingLocation">
+@if (housingLocation$ | async; as housingLocation) {
+<article>
     <img class="listing-photo" [src]="housingLocation.photo" alt="Exterior photo of {{ housingLocation.name }}"
         crossorigin />
     <section class="listing-description">
@@ -27,4 +27,6 @@
         </form>
     </section>
 </article>
+} @else {
+<p>Not found</p>
 }

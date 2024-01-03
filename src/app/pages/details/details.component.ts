@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HousingService } from '../../housing.service';
 import { HousingLocation } from '../../housing-location/housing-location';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -15,7 +16,7 @@ import { HousingLocation } from '../../housing-location/housing-location';
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService: HousingService = inject(HousingService);
-  housingLocation: HousingLocation | undefined;
+  housingLocation$!: Observable<HousingLocation | undefined>;
   applyForm: FormGroup = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -24,10 +25,8 @@ export class DetailsComponent {
 
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params['id']);
-
-    this.housingService
-      .getHousingLocationById(housingLocationId)
-      .then((housingLocation) => (this.housingLocation = housingLocation));
+    this.housingLocation$ =
+      this.housingService.getHousingLocationById(housingLocationId);
   }
 
   submitApplication() {

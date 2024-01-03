@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { HousingService } from '../housing.service';
+import { ApplyForm } from './apply-form';
 
 @Component({
   selector: 'app-apply-form',
@@ -15,17 +21,20 @@ export class ApplyFormComponent {
 
   housingService: HousingService = inject(HousingService);
   applyForm: FormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   submitApplication() {
-    this.housingService.submitApplication(
-      this.applyForm.value.firstName ?? '',
-      this.applyForm.value.lastName ?? '',
-      this.applyForm.value.email ?? ''
-    );
-    this.applyForm.reset();
+    if (!this.applyForm.valid) {
+      return;
+    }
+
+    const idHousingLocation = this.idHousingLocation;
+    const data: ApplyForm = { idHousingLocation, ...this.applyForm.value };
+    this.housingService.submitApplication(data).subscribe((data) => {
+      this.applyForm.reset();
+    });
   }
 }

@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HousingLocation } from './housing-location/housing-location';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApplyForm } from './apply-form/apply-form';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class HousingService {
     );
   }
 
-  submitApplication(firstName: string, lastName: string, email: string) {
-    console.log(firstName, lastName, email);
+  submitApplication(applyForm: ApplyForm): Observable<any> {
+    return this.http.post(`${this.url}/applyForms`, applyForm);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HousingLocation } from '../housing-location';
+import { HousingLocation } from './housing-location';
 import { RouterModule } from '@angular/router';
 
 @Component({

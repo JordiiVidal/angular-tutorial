@@ -21,18 +21,9 @@ import { Observable, filter, map } from 'rxjs';
 export class HomeComponent {
   housingService: HousingService = inject(HousingService);
 
-  filter: WritableSignal<string> = signal('');
   housingLocationList$!: Observable<HousingLocation[]>;
 
-  constructor() {
-    effect(() => this.retriveLocationList());
-  }
-
   retriveLocationList() {
-    return this.housingService.getAllHousingLocations(this.filter());
-  }
-
-  setFilter(text: string) {
-    this.filter.set(text);
+    this.housingLocationList$ = this.housingService.getAllHousingLocations();
   }
 }

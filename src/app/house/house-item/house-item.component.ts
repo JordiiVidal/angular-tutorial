@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './house-item.component.html',
-  styleUrl: './house-item.component.css',
+  styleUrl: './house-item.component.scss',
 })
 export class HouseItemComponent {
   @Input() house!: House;

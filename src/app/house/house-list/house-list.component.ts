@@ -10,7 +10,7 @@ import { HouseService } from '../house.service';
   standalone: true,
   imports: [CommonModule, HouseItemComponent],
   templateUrl: './house-list.component.html',
-  styleUrl: './house-list.component.css',
+  styleUrl: './house-list.component.scss',
 })
 export class HouseListComponent {
   houseService: HouseService = inject(HouseService);

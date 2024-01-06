@@ -8,8 +8,8 @@ import { ApplyForm } from './apply-form/apply-form';
   providedIn: 'root',
 })
 export class HousingService {
-  private http = inject(HttpClient);
-  readonly url = 'http://localhost:3000';
+  private url = 'http://localhost:3000';
+  http = inject(HttpClient);
 
   getAllHousingLocations(): Observable<HousingLocation[]> {
     return this.http.get<HousingLocation[]>(`${this.url}/locations`);

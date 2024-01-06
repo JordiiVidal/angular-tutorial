@@ -1,9 +1,15 @@
-import { Component, inject } from '@angular/core';
+import {
+  Component,
+  WritableSignal,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../../housing-location/housing-location.component';
 import { HousingLocation } from '../../housing-location/housing-location';
 import { HousingService } from '../../housing.service';
-import { Observable } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,23 +19,20 @@ import { Observable } from 'rxjs';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  housingLocationList: HousingLocation[] = [];
-  filtredLocationList: HousingLocation[] = [];
-  housingLocation$!: Observable<HousingLocation[]>;
   housingService: HousingService = inject(HousingService);
 
+  filter: WritableSignal<string> = signal('');
+  housingLocationList$!: Observable<HousingLocation[]>;
+
   constructor() {
-    this.housingLocation$ = this.housingService.getAllHousingLocations();
+    effect(() => this.retriveLocationList());
   }
 
-  filterResults(city: string) {
-    if (!city) {
-      this.filtredLocationList = this.housingLocationList;
-    }
+  retriveLocationList() {
+    return this.housingService.getAllHousingLocations(this.filter());
+  }
 
-    this.filtredLocationList = this.housingLocationList.filter(
-      (housingLocation) =>
-        housingLocation.city.toLowerCase().includes(city.toLowerCase())
-    );
+  setFilter(text: string) {
+    this.filter.set(text);
   }
 }

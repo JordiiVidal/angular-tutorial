@@ -1,5 +1,6 @@
-@if (house$ | async; as house) {
 <article>
+    <a [routerLink]="['']">Back</a>
+    @if (house$ | async; as house) {
     <img class="listing-photo" [src]="house.photo" alt="Exterior photo of {{ house.name }}" crossorigin />
     <section class="listing-description">
         <h2 class="listing-heading">{{ house.city }}, {{ house.state }}</h2>
@@ -12,7 +13,7 @@
             <li>Does this location have laundry: {{ house.laundry }}</li>
         </ul>
     </section>
+    } @else {
+    <p>Not found</p>
+    }
 </article>
-} @else {
-<p>Not found</p>
-}

@@ -6,7 +6,7 @@ import { HouseItemComponent } from '../house-item/house-item.component';
 import { HouseService } from '../house.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-house-list',
   standalone: true,
   imports: [CommonModule, HouseItemComponent],
   templateUrl: './house-list.component.html',

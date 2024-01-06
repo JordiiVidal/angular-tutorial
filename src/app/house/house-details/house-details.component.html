@@ -1,0 +1,18 @@
+@if (house$ | async; as house) {
+<article>
+    <img class="listing-photo" [src]="house.photo" alt="Exterior photo of {{ house.name }}" crossorigin />
+    <section class="listing-description">
+        <h2 class="listing-heading">{{ house.city }}, {{ house.state }}</h2>
+    </section>
+    <section class="listing-features">
+        <h2 class="section-heading">About this housing location</h2>
+        <ul>
+            <li>Units available: {{ house.availableUnits }}</li>
+            <li>Does this location have wifi: {{ house.wifi }}</li>
+            <li>Does this location have laundry: {{ house.laundry }}</li>
+        </ul>
+    </section>
+</article>
+} @else {
+<p>Not found</p>
+}

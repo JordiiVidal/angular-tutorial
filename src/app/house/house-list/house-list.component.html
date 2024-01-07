@@ -1,5 +1,5 @@
 <section class="results">
-    @for (house of houseList$ | async; track house.id){
+    @for (house of houseList(); track house.id){
     <app-house-item [house]="house" />
     } @empty {
     <p>There are no items.</p>

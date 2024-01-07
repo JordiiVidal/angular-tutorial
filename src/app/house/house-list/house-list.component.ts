@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { House } from '../house';
+import { Component, computed, inject } from '@angular/core';
 import { HouseItemComponent } from '../house-item/house-item.component';
 import { HouseService } from '../house.service';
 
@@ -15,13 +13,11 @@ import { HouseService } from '../house.service';
 export class HouseListComponent {
   houseService: HouseService = inject(HouseService);
 
-  houseList$!: Observable<House[]>;
-
-  constructor() {
-    this.retriveLocationList();
-  }
-
-  retriveLocationList() {
-    this.houseList$ = this.houseService.getAll();
-  }
+  houseList = computed(() => {
+    try {
+      return this.houseService.houses();
+    } catch (e) {
+      return [];
+    }
+  });
 }

@@ -1,6 +1,7 @@
 <section class="filters">
     <form>
-        <input (keyup)="setFilter(inputFilter.value)" #inputFilter>
+        <label for="filter-name">¿What are you search?</label>
+        <input id="filter-name" type="text" (keyup)="setFilter(inputFilter.value)" #inputFilter>
     </form>
 </section>
 <section class="results">

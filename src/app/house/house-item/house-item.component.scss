@@ -15,16 +15,17 @@ section {
   }
 
   .actions {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    padding: 10px 20px 20px 20px;
   }
 
   .location {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px 20px 20px 20px;
     img {
       width: 22px;
     }

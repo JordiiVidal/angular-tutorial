@@ -7,15 +7,15 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { LoadingComponent } from '../../layout/loading/loading.component';
+import { House } from '../house';
 import { HouseItemComponent } from '../house-item/house-item.component';
 import { HouseService } from '../house.service';
-import { House } from '../house';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-house-list',
   standalone: true,
-  imports: [CommonModule, HouseItemComponent],
+  imports: [CommonModule, HouseItemComponent, LoadingComponent],
   templateUrl: './house-list.component.html',
   styleUrl: './house-list.component.scss',
 })

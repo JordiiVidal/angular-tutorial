@@ -4,6 +4,7 @@
         <input id="filter-name" type="text" (keyup)="setFilter(inputFilter.value)" #inputFilter>
     </form>
 </section>
+@defer{
 <section class="results">
     @for (house of filtredHouseList(); track house.id){
     <app-house-item [house]="house" />
@@ -11,3 +12,6 @@
     <p>There are no items.</p>
     }
 </section>
+}@loading (minimum 2s){
+<app-loading title="Retrieving best nearby homes" />
+}
